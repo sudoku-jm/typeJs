@@ -47,6 +47,6 @@
 
     "forceConsistentCasingInFileNames": true,
 
-    "noImplicitAny":false
+    "noImplicitAny": false
   }
 }
