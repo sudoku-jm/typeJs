@@ -48,6 +48,8 @@ const obj: A = {
 // 그러면 이 클래스 자체를 가리키는 타입은 뭔가?
 typeof A;
 const b: typeof A = A;
+const realObject = new b("aaa");
+
 // const b: typeof A = new A("test");
 
 //==========새로 추가된 private
