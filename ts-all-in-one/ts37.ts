@@ -47,3 +47,33 @@ const c = new A().add('1','2');
 const d = new A().add(1,2);
 const e = new A().add('1',2) // 에러남 
 //The call would have succeeded against this implementation, but implementation signatures of overloads are not externally visible.
+
+
+
+// =========================
+// class Calculator {
+//   // [선언부]: 숫자가 들어오면 숫자를 돌려주겠다고 엄격하게 약속함
+//   add(a: number, b: number): number;
+
+//   // [구현부]: any를 썼기 때문에 내부에서 무슨 짓을 해도 에러가 안 남
+//   add(a: any, b: any) {
+//     // ⚠️ 실수 발생: a가 숫자인데 문자열 메서드인 .split()을 써버림!
+//     // TypeScript는 any니까 에러를 안 내지만, 실제 실행(Runtime)하면 터집니다.
+//     return a.split(''); 
+//   }
+// }
+
+// const cal = new Calculator();
+// cal.add(1, 2); // 💥 실행 시점 에러: a.split is not a function
+
+class Calculator {
+  add(a: number, b: number): number;
+  add(a: string, b: string): string;
+
+  // 구현부에서 any 대신 합집합(Union)을 사용!
+  add(a: number | string, b: number | string) {
+    // 이제 여기서 a.split('')을 치면 빨간 줄이 뜹니다!
+    // "a가 number일 수도 있는데 split을 쓰면 안 돼!"라고 알려주는 거죠.
+    return a + b; 
+  }
+}
