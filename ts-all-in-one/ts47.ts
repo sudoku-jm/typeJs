@@ -14,7 +14,7 @@ const b:Record<string, number> = {a:1,b:2,c:3}
 
 //=========== 직접만들기
 
-type R<K extends keyof any,S> = {
+type R<K extends keyof any, S> = {
     [key in K] : S 
 }
 
